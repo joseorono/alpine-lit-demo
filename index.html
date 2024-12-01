@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alpine + Lit</title>
+  <link rel="stylesheet" href="./src/index.css" />
+  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/my-element.js"></script>
+</head>
+
+<body>
+
+  <div x-data="{name: 'jose'}">
+
+    <button @click="name = 'Juan'">My Name is Juan</button>
+    <button @click="name = 'Jose'">My Name is Jose</button>
+    <button @click="name = 'Gaby'">My Name is Gaby</button>
+
+    <my-element x-bind:name="name">
+      <h1>Hello World!</h1>
+    </my-element>
+    <div x-data="{ open: false }">
+      <button @click="open = true">Expand</button>
+
+      <span x-show="open">
+        Content...
+      </span>
+    </div>
+
+  </div>
+</body>
+
+</html>
