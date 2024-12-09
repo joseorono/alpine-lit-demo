@@ -14,6 +14,10 @@ export class MyElement extends LitElement {
     name: { type: String },
   };
 
+  createRenderRoot() {
+    return this;
+  }
+
   static get properties() {
     return {
       /**
@@ -36,6 +40,57 @@ export class MyElement extends LitElement {
 
   render() {
     return html`
+      <div class="bg-red-600">Red background</div>
+      <div class="p-7" x-data="{ count: 0 }">
+        <button class="btn btn-primary" @click="count++">
+          Increment With Alpine Inside Lit
+        </button>
+        <span x-text="count" class="p-3 border-1 block"></span>
+      </div>
+      <div class="max-w-md mx-auto space-y-4 ">
+        <h1 class="text-3xl font-bold text-center text-primary">
+          Tailwind + DaisyUI Demo
+        </h1>
+
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title">Hello, Components!</h2>
+            <p>This is a sample card using DaisyUI components.</p>
+            <div class="card-actions justify-end">
+              <button class="btn btn-primary">Click Me</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert alert-info">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="stroke-current shrink-0 w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+          <span>This is an informational alert!</span>
+        </div>
+
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Pick a flavor</span>
+          </label>
+          <select class="select select-bordered">
+            <option disabled selected>Choose one</option>
+            <option>Vanilla</option>
+            <option>Chocolate</option>
+            <option>Strawberry</option>
+          </select>
+        </div>
+      </div>
       <div>
         <slot></slot>
         <div class="card">
@@ -51,59 +106,6 @@ export class MyElement extends LitElement {
 
   _onClick() {
     this.count++;
-  }
-
-  static get styles() {
-    return css`
-      :host {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 2rem;
-        text-align: center;
-      }
-
-      a {
-        font-weight: 500;
-        color: #646cff;
-        text-decoration: inherit;
-      }
-      a:hover {
-        color: #535bf2;
-      }
-
-      ::slotted(h1) {
-        font-size: 3.2em;
-        line-height: 1.1;
-      }
-
-      button {
-        border-radius: 8px;
-        border: 1px solid transparent;
-        padding: 0.6em 1.2em;
-        font-size: 1em;
-        font-weight: 500;
-        font-family: inherit;
-        background-color: #1a1a1a;
-        cursor: pointer;
-        transition: border-color 0.25s;
-      }
-      button:hover {
-        border-color: #646cff;
-      }
-      button:focus,
-      button:focus-visible {
-        outline: 4px auto -webkit-focus-ring-color;
-      }
-
-      @media (prefers-color-scheme: light) {
-        a:hover {
-          color: #747bff;
-        }
-        button {
-          background-color: #f9f9f9;
-        }
-      }
-    `;
   }
 }
 
